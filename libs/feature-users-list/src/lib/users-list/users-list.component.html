@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-12 mb-3">
+    <mat-card>
+      <mat-card-header><h5>Filters</h5></mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          @for (fieldName of formFacade.$fieldNames() ; track fieldName) {
+          <div class="col-md-6 col-sm-12">
+            <form-field-wrapper
+              [formFieldName]="fieldName"
+            ></form-field-wrapper>
+          </div>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div class="col-12 mb-3">
+  <button mat-raised-button color="primary" (click)="facade.toCreateUserPage()">
+    New User
+  </button>
+</div>
+
+<div class="col-12">
+  <h5>Users</h5>
+  <material-table-wrapper
+    [tableData]="facade.table.tableData()"
+  ></material-table-wrapper>
+</div>

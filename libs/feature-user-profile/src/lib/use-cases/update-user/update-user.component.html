@@ -1,0 +1,5 @@
+<ng-container *loadingState="facade.pageData() as data">
+  Edit profile for: {{ data.user?.id }}
+  <person-info></person-info>
+  <button mat-raised-button color="primary" [disabled]="facade.isUserUpdating()" (click)="updateUser()">Update user</button>
+</ng-container>

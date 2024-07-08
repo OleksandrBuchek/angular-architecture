@@ -1,0 +1,13 @@
+@if (direction() === 'before') {
+<button mat-icon-button [matTooltip]="text()" [matTooltipPosition]="position()">
+  <mat-icon>{{ icon() }}</mat-icon>
+</button>
+}
+
+<polymorpheus-outlet [content]="content()"></polymorpheus-outlet>
+
+@if (direction() === 'after') {
+<button mat-icon-button [matTooltip]="text()" [matTooltipPosition]="position()">
+  <mat-icon>{{ icon() }}</mat-icon>
+</button>
+}

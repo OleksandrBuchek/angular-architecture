@@ -1,0 +1,28 @@
+<mat-form-field>
+  @if (label()) {
+  <mat-label>{{ label() }}</mat-label>
+  }
+  <input
+    matInput
+    [name]="name"
+    [autocomplete]="(autocomplete | async)!"
+    [attr.type]="inputType"
+    [formControl]="control"
+    [placeholder]="(placeholder | async)!"
+    [maxlength]="validationParams.maxLength()"
+    [autofocus]="autofocus"
+    [attr.data-cy]="extra?.e2eAttr"
+    (keyup.enter)="onSubmit()"
+  />
+  @if (suffixAndPrefix.suffix()) {
+  <div matSuffix>{{ suffixAndPrefix.suffix() }}</div>
+  } @for (item of errorMessages$ | async; track item.key) {
+  <mat-error>
+    {{ item.message$ | async }}
+  </mat-error>
+  } @if (hint(); as hint) {
+  <mat-hint>{{ hint }}</mat-hint>
+  } @if (suffixAndPrefixIcons.prefixIcon()) {
+  <mat-icon matIconPrefix>{{ suffixAndPrefixIcons.prefixIcon() }}</mat-icon>
+  }
+</mat-form-field>

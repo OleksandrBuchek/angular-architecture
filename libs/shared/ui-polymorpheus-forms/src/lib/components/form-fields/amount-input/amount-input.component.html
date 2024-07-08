@@ -1,0 +1,28 @@
+<mat-form-field>
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <input
+    type="text"
+    matInput
+    [formControl]="control"
+    [placeholder]="(placeholder | async)!"
+    [mask]="maskPattern"
+    [outputTransformFn]="toFixed"
+    [allowNegativeNumbers]="true"
+    [class]="textAlignClassName"
+    [attr.data-cy]="extra?.e2eAttr"
+    (focus)="onFocused()"
+  />
+  @if (suffixAndPrefix.suffix()) {
+    <div matSuffix>{{ suffixAndPrefix.suffix() }}</div>
+  }
+  @for (item of errorMessages$ | async; track item.key) {
+    <mat-error>
+      {{ item.message$ | async }}
+    </mat-error>
+  }
+  @if (hint(); as hint) {
+    <mat-hint>{{ hint }}</mat-hint>
+  }
+</mat-form-field>

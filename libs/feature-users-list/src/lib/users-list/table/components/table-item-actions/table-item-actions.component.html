@@ -1,0 +1,9 @@
+<button mat-button [matMenuTriggerFor]="menu">{{ label() }}</button>
+
+<mat-menu #menu="matMenu">
+  @for (item of items(); track $index) {
+  <button mat-menu-item (click)="onSelected.emit(item.value)">
+    {{ $any(item).label }}
+  </button>
+  }
+</mat-menu>

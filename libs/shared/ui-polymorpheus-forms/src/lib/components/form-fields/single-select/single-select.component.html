@@ -1,0 +1,27 @@
+<mat-form-field>
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <mat-select
+    [formControl]="control"
+    [placeholder]="(placeholder | async)!"
+    [hideSingleSelectionIndicator]="hideSingleSelectionIndicator"
+    [multiple]="multiple"
+    [attr.data-cy]="extra?.e2eAttr"
+  >
+    @for (option of options(); track option.value; let index = $index) {
+      <mat-option [attr.data-cy]="extra?.e2eAttr + '-option-' + index" [value]="option.value">{{
+        option.label$ | async
+      }}</mat-option>
+    }
+  </mat-select>
+  @for (item of errorMessages$ | async; track item.key) {
+    <mat-error>
+      {{ item.message$ | async }}
+    </mat-error>
+  }
+
+  @if (suffixAndPrefixIcons.prefixIcon()) {
+    <mat-icon matIconPrefix>{{ suffixAndPrefixIcons.prefixIcon() }}</mat-icon>
+  }
+</mat-form-field>

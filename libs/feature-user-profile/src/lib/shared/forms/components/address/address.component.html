@@ -1,0 +1,22 @@
+<form class="row" [formGroup]="facade.form">
+  @if (facade.$fieldsVisibilityMap().addressLine1) {
+    <div class="col-12">
+      <form-field-wrapper formFieldName="addressLine1"></form-field-wrapper>
+    </div>
+  }
+  @if (facade.$fieldsVisibilityMap().addressLine2) {
+    <div class="col-12">
+      <form-field-wrapper formFieldName="addressLine2"></form-field-wrapper>
+    </div>
+  }
+  @if (facade.$fieldsVisibilityMap().zip) {
+    <div class="col-6">
+      <form-field-wrapper formFieldName="zip"></form-field-wrapper>
+    </div>
+  }
+  @if (facade.$fieldsVisibilityMap().country) {
+    <div class="col-6">
+      <form-field-wrapper formFieldName="country"></form-field-wrapper>
+    </div>
+  }
+</form>

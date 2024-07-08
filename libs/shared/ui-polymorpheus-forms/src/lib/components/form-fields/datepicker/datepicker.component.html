@@ -1,0 +1,25 @@
+<mat-form-field>
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+
+  <input
+    matInput
+    [formControl]="control"
+    [matDatepicker]="picker"
+    [placeholder]="(placeholder | async)!"
+    [min]="validationParams.minDate()"
+    [max]="validationParams.maxDate()"
+    [attr.data-cy]="extra?.e2eAttr"
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="picker">
+    <mat-icon matDatepickerToggleIcon>{{ icon }}</mat-icon>
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+
+  @for (item of errorMessages$ | async; track item.key) {
+    <mat-error>
+      {{ item.message$ | async }}
+    </mat-error>
+  }
+</mat-form-field>

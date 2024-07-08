@@ -1,0 +1,18 @@
+<mat-form-field>
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <input type="text" matInput [placeholder]="(placeholder | async)!" [formControl]="control" [matAutocomplete]="auto" />
+  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption [displayWith]="displayWithFn">
+    @for (option of options(); track option.value) {
+      <mat-option [value]="option.value">
+        {{ option.label$ | async }}
+      </mat-option>
+    }
+  </mat-autocomplete>
+  @for (item of errorMessages$ | async; track item.key) {
+    <mat-error>
+      {{ item.message$ | async }}
+    </mat-error>
+  }
+</mat-form-field>

@@ -1,0 +1,6 @@
+<ng-container *loadingState="facade.collections.collectionsLoadingState()">
+  <person-info></person-info>
+  <button mat-raised-button color="primary" [disabled]="facade.isUserCreating()" (click)="createUser()">
+    Create user
+  </button>
+</ng-container>

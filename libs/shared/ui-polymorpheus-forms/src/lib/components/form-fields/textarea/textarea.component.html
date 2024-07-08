@@ -1,0 +1,18 @@
+<mat-form-field>
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <textarea
+    matInput
+    [cdkTextareaAutosize]="autosizeProps.autosize"
+    [cdkAutosizeMinRows]="autosizeProps.minRows"
+    [cdkAutosizeMaxRows]="autosizeProps.maxRows"
+    [formControl]="control"
+    [placeholder]="(placeholder | async)!"
+  ></textarea>
+  @for (item of errorMessages$ | async; track item.key) {
+    <mat-error>
+      {{ item.message$ | async }}
+    </mat-error>
+  }
+</mat-form-field>

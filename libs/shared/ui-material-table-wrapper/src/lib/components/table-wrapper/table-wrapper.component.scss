@@ -1,0 +1,9 @@
+:host ::ng-deep {
+  datatable-header-cell {
+    display: flex !important;
+    .datatable-header-cell-template-wrap {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<mat-form-field>
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <input
+    type="number"
+    matInput
+    [formControl]="control"
+    [placeholder]="(placeholder | async)!"
+    [min]="validationParams.min()"
+    [max]="validationParams.max()"
+    [step]="step"
+  />
+  @if (suffixAndPrefix.suffix()) {
+    <div matSuffix>{{ suffixAndPrefix.suffix() }}</div>
+  }
+  @for (item of errorMessages$ | async; track item.key) {
+    <mat-error>
+      {{ item.message$ | async }}
+    </mat-error>
+  }
+  @if (hint(); as hint) {
+    <mat-hint>{{ hint }}</mat-hint>
+  }
+</mat-form-field>

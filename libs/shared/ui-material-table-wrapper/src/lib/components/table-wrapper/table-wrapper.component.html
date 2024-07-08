@@ -1,0 +1,22 @@
+<table mat-table [dataSource]="table.data()" class="mat-elevation-z8">
+  @for (item of table.columnsEntries(); track item.key) { @if
+  (table.columnsVisibilityMap[item.key]()) {
+  <ng-container [matColumnDef]="item.key">
+    <th mat-header-cell *matHeaderCellDef>
+      <span [attr.data-cy]="'table-column-header-' + item.key">
+        <ng-container
+          [polymorpheusComponentOutlet]="getHeader(item)"
+        ></ng-container>
+      </span>
+    </th>
+    <td mat-cell *matCellDef="let row" (click)="onSelected(row)">
+      <ng-container
+        [polymorpheusComponentOutlet]="table.getCell(item, row)"
+      ></ng-container>
+    </td>
+  </ng-container>
+
+  } }
+  <tr mat-header-row *matHeaderRowDef="table.columnsOrder()"></tr>
+  <tr mat-row *matRowDef="let row; columns: table.columnsOrder()"></tr>
+</table>
